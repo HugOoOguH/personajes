@@ -1,0 +1,40 @@
+{%extends 'base.html'%}
+
+{%block titulo%}
+	Detalle
+{%endblock titulo%}
+
+{%block content%}
+	<h1>{{post.titulo}}</h1>
+	<p style="text-align:justify">{{post.cuerpo}}</p>
+	<span>{{post.creado}}</span>
+
+	<a href="{%url 'posts:blog'%}">Volver atras</a>
+
+	<br>
+	<br>
+	<br>
+
+	<h3>Comentarios</h3>
+
+	{%for entrada in entradas%}
+	<h5>{{entrada.autor}}</h5>
+	
+	<p  style="text-align:justify">{{entrada.cuerpo}}</p>
+	<h6>{{entrada.fecha}}</h6>
+	<br><br>
+	{%empty%}
+	<h7>Aún no hay comentarios :(</h7>
+	{%endfor%}
+	
+	<br>
+
+	<form action="." method="post">
+		{%csrf_token%}
+		{{form.as_p}}
+		<!--<input type="text" name="titulo" placeholder="Escribe el titulo del post">
+		<textarea name="cuerpo" placeholder="Escribe inspirate"></textarea> -->
+		<input type="submit" value="Comentar">
+	</form>
+
+{%endblock content%}

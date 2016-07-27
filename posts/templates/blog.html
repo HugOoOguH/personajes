@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{%block titulo%}
+	Poké-Marvel
+{%endblock titulo%}
+
+{%block content%}
+<h1>Bienvenido al blog de superheroes</h1>
+	{%for entrada in entradas%}
+	<a href="{{entrada.get_absolute_url2}}"><h2>{{entrada.titulo}}</h2></a>
+	<!--<a href="{%url 'posts:detalle' entrada.id%}"><h2>{{entrada.titulo}}</h2></a>-->
+	<p  style="text-align:justify">{{entrada.cuerpo}}</p>
+	<h4>{{entrada.fecha}}</h4>
+	{%empty%}
+	<h2>Aún no hay posts! :(</h2>
+	{%endfor%}
+{%endblock content%}
